@@ -1,0 +1,36 @@
+{
+  "name": "react-phoenix",
+  "version": "0.6.0",
+  "scripts": {
+    "release": "node ./node_modules/babel-cli/bin/babel src/react_phoenix.js | node ./node_modules/uglify-js/bin/uglifyjs - --mangle --compress --output priv/js/react_phoenix.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/geolessel/react-phoenix.git"
+  },
+  "author": "Geoffrey Lessel <geo@geoffreylessel.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geolessel/react-phoenix/issues"
+  },
+  "main": "./priv/js/react_phoenix.js",
+  "files": [
+    "priv/js/react_phoenix.js",
+    "package.json"
+  ],
+  "homepage": "https://github.com/geolessel/react-phoenix#readme",
+  "devDependencies": {
+    "uglify-js": "^2.8.29"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "peerDependencies": {
+    "react": ">=15",
+    "react-dom": ">=15"
+  }
+}
