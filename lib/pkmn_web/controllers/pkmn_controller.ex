@@ -31,7 +31,8 @@ defmodule PkmnWeb.PkmnController do
 
     render(conn, "show_pkmn.html",
           page_title: pokemon["species"]["name"]
-            |> String.capitalize, pokemon: pokemon,
+            |> String.capitalize,
+          pokemon: pokemon,
           species: pkmn_species,
           stat_of_type: stat_of_type,
           evolution_chain: evolution_chain,

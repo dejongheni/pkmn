@@ -22,8 +22,9 @@ import "react-phoenix"
 
 import SearchBar from "./components/search_bar"
 import Radar from "./components/radar"
+import LikeBar from "./components/like_bar"
 window.Components = {
     SearchBar,
-    Radar
+    Radar,
+    LikeBar
 }
-window.__socket = require("phoenix").Socket;

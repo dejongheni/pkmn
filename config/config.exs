@@ -30,15 +30,6 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 config :ecto, :json_library, Jason
 
-config :phoenix, :template_engines,
-  drab: Drab.Live.Engine
-
-config :drab, PkmnWeb.Endpoint,
-  otp_app: :pkmn
-
-config :drab, PkmnWeb.Endpoint,
-  js_socket_constructor: "window.__socket"
-
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -45,8 +45,7 @@ defmodule Pkmn.MixProject do
       {:cowboy, "~> 2.0"},
       {:httpoison, "~> 1.4"},
       {:poison, "~> 3.0"},
-      {:react_phoenix, "~> 1.0.0"},
-      {:drab, "~> 0.10.1"}
+      {:react_phoenix, "~> 1.0.0"}
     ]
   end
 

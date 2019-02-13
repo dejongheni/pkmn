@@ -31,12 +31,13 @@
             src=<%= @pokemon["sprites"]["front_default"] %> 
             alt="<%= @pokemon["species"]["name"] %> sprite" />
 
-        <p>
-          <img  src="/images/like.png" alt="Like" drab-click="add_like"/>
-          <%=  @likes_number %> |
-          <%=  @dislikes_number %>
-          <img  src="/images/dislike.png" alt="Dislike" drab-click="add_dislike"/>
-        </p>
+        <%= react_component("Components.LikeBar",
+            %{likes: @likes_number, 
+            dislikes: @dislikes_number, 
+            pokemon: @pokemon,
+            route_likes: Routes.pkmn_api_path(@conn, :add_pkmn_like, @pokemon["id"]),
+            route_dislikes: Routes.pkmn_api_path(@conn, :add_pkmn_dislike, @pokemon["id"])
+        }) %>
     </div>
   </div>
  
@@ -87,5 +88,5 @@
     <% end %>
   </div>
   
-
+  
 </div>
