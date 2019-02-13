@@ -9,11 +9,11 @@ defmodule Pkmn.PkmnTest do
     end
 
     test "return stat on type: test stat" do
-      assert %Stat{type: "test stat"} = Pkmn.Pkmn_stats.get_stats_by(type: "test stat")
+      assert {:ok, %Stat{type: "test stat"}} = Pkmn.Pkmn_stats.get_stats_by(type: "test stat")
     end
 
     test "return Ecto.NoResultsError on type: test" do
-      assert_raise Ecto.NoResultsError,fn -> Pkmn.Pkmn_stats.get_stats_by(type: "test") end
+      assert {:error, "not found"} = Pkmn.Pkmn_stats.get_stats_by(type: "test")
     end
   end
 
@@ -37,11 +37,11 @@ defmodule Pkmn.PkmnTest do
     end
 
     test "return %Pokemon{likes: 1, dislikes: 0} on name: toto" do
-      assert %Pokemon{likes: 1, dislikes: 0} = Pkmn.Pkmn_stats.add_like(name: "toto")
+      assert {:ok, %Pokemon{likes: 1, dislikes: 0}} = Pkmn.Pkmn_stats.add_like(name: "toto")
     end
 
     test "assert not found on name: tata" do
-      assert "not found" = Pkmn.Pkmn_stats.add_like(name: "tata")
+      assert {:error, "not found"} = Pkmn.Pkmn_stats.add_like(name: "tata")
     end
   end
 
@@ -51,11 +51,25 @@ defmodule Pkmn.PkmnTest do
     end
 
     test "return %Pokemon{likes: 0, dislikes: 1} on name: toto" do
-      assert %Pokemon{likes: 0, dislikes: 1} = Pkmn.Pkmn_stats.add_dislike(name: "toto")
+      assert {:ok, %Pokemon{likes: 0, dislikes: 1}} = Pkmn.Pkmn_stats.add_dislike(name: "toto")
     end
 
     test "assert not found on name: tata" do
-      assert "not found" = Pkmn.Pkmn_stats.add_dislike(name: "tata")
+      assert {:error, "not found"} = Pkmn.Pkmn_stats.add_dislike(name: "tata")
+    end
+  end
+
+  describe "get_pkmn/1" do
+    setup do
+      {:ok, pokemon: pkmn_fixture(name: "toto", likes: 0, dislikes: 0)}
+    end
+
+    test "return %Pokemon{} on name: toto" do
+      assert {:ok, %Pokemon{}} = Pkmn.Pkmn_stats.get_pkmn(name: "toto")
+    end
+
+    test "return nil on name tata" do
+      assert {:error, "not found"} == Pkmn.Pkmn_stats.get_pkmn(name: "tata")
     end
   end
 end

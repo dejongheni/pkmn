@@ -22,7 +22,12 @@ defmodule PkmnWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PkmnWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", PkmnWeb do
+    pipe_through :api
+
+    get   "/pokemon/:id", PkmnAPIController, :get_pkmn
+    get   "/pokemon/:id/likes", PkmnAPIController, :get_pkmn_likes_dislikes
+    patch "/pokemon/:id/likes", PkmnAPIController, :add_pkmn_like
+    patch "/pokemon/:id/dislikes", PkmnAPIController, :add_pkmn_dislike
+  end
 end

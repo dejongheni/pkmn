@@ -43,7 +43,7 @@ defmodule PkmnWeb.PkmnController do
   defp mean_stats_of_pkmn_types(pkmn) do
     Enum.reduce(pkmn["types"], %{}, fn type, type_map ->
         type = type["type"]["name"]
-        stats = get_stats_by(type: type)
+        {:ok, stats} = get_stats_by(type: type)
         %{
           speed: [stats.speed] ++ Map.get(type_map, "speed", []),
           specialdefense: [stats.specialdefense] ++ Map.get(type_map, "specialdefense", []),
