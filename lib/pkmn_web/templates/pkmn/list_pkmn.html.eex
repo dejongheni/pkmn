@@ -1,0 +1,5 @@
+<div class="row">
+
+  <%= react_component("Components.SearchBar", %{list_of_pkmns: @list_of_pkmns, route: Routes.pkmn_path(@conn, :list_pkmn)}) %>
+
+</div>

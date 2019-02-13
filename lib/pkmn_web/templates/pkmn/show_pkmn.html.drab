@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="column column-75">
+      <div class="row">
+        <div class="column ">
+        <h3><%= String.capitalize(@pokemon["species"]["name"]) %></h3>
+        </div>
+        <div class="column">
+          <%= for type <- @pokemon["types"] do %>
+            <span class="poke_type" style="background-color: var(--<%= type["type"]["name"] %>)">
+            <%= String.upcase(type["type"]["name"]) %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column phx-hero">
+            <%= 
+            Enum.find(@species["flavor_text_entries"], fn description -> 
+                description["language"]["name"] == "en" 
+            end) 
+            |> Map.fetch!("flavor_text") 
+            %>
+        </div>
+      </div>
+    </div>
+    <div class="column ">
+      
+        <img class="pkmn-sprite" 
+            style="border-color:<%= @species["color"]["name"]%>"
+            src=<%= @pokemon["sprites"]["front_default"] %> 
+            alt="<%= @pokemon["species"]["name"] %> sprite" />
+
+        <p>
+          <img  src="/images/like.png" alt="Like" drab-click="add_like"/>
+          <%=  @likes_number %> |
+          <%=  @dislikes_number %>
+          <img  src="/images/dislike.png" alt="Dislike" drab-click="add_dislike"/>
+        </p>
+    </div>
+  </div>
+ 
+  <div class="row">
+    <div class="column column-75 ">
+      <table>
+        <thead>
+          <tr>
+            <th>Stat Name</th>
+            <th><%= String.capitalize(@pokemon["species"]["name"]) %> stats</th>
+            <th>Type stats average</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for stat <- @pokemon["stats"] do %>
+            <tr>
+              <% stat_name = stat["stat"]["name"]%>
+              <th><%= stat_name %></th>
+              <th><%= stat["base_stat"] %></th>
+              <th><%= @stat_of_type[ 
+                        stat_name
+                        |> String.replace("-", "")
+                        |> String.to_atom
+                        ] %></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= react_component("Components.Radar", %{stat_of_pkmn: stat_of_pkmn(@pokemon), stat_of_type: @stat_of_type}, target_id: "radar" ) %>
+    <div id="radar" class="column" ></div>
+  </div>
+  
+  <h4 style="text-align:center;"> Evolutions</h4>
+  <div class="row">
+    <%= for pkmn <- @evolution_chain do %>
+    <div class="column evolution-chain" >
+
+        <a href=<%= Routes.pkmn_path(@conn, :list_pkmn)<>"/"<> pkmn[:id] %> >
+         <figure>
+            <img src=<%= get_sprite(pkmn[:url]) %> style="vertical-align:middle" >
+            </img>
+            <figcaption><%= pkmn[:name] |> String.capitalize %></figcaption>
+         </figure>
+        </a>
+      
+    </div>
+    <% end %>
+  </div>
+  
+
+</div>
