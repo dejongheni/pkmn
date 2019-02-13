@@ -2,6 +2,8 @@
 
 Homework for Fabernovel
 
+Elixir, Erlang, Node.js and PostgreSQL are required, note on installation here: https://hexdocs.pm/phoenix/installation.html
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
