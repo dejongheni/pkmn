@@ -6,8 +6,7 @@
 
 # The directory Mix downloads your dependencies sources to.
 /deps/
-!/deps/react_phoenix/package.json
-!/deps/react_phoenix/package-lock.json
+
 # Where 3rd-party dependencies like ExDoc output generated docs.
 /doc/
 
