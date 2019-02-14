@@ -10,6 +10,10 @@ defmodule PkmnWeb.PkmnAPIView do
     }
   end
 
+  def render("404.json", _assigns) do
+    %{error: "not found"}
+  end
+
   def render("likes.json", %{pkmn: pkmn}) do
     pkmn
   end

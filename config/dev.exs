@@ -8,7 +8,7 @@ use Mix.Config
 # with webpack to recompile .js and .css sources.
 config :pkmn, PkmnWeb.Endpoint,
   http: [port: 4000],
-  debug_errors: true,
+  #debug_errors: true,
   code_reloader: true,
   check_origin: false,
   watchers: [node: ["node_modules/webpack/bin/webpack.js", "--mode", "development", "--watch-stdin",
@@ -42,12 +42,12 @@ config :pkmn, PkmnWeb.Endpoint,
   ]
 
 # Do not include metadata nor timestamps in development logs
-config :logger, :console, format: "[$level] $message\n"
+# config :logger, :console, format: "[$level] $message\n"
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
-config :phoenix, :stacktrace_depth, 20
-
+# config :phoenix, :stacktrace_depth, 20
+config :logger, level: :info
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
